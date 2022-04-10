@@ -8,13 +8,13 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "employee")
 public class EmployeeDetails {
     @Id
     @Column(name = "emp_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long empId;
 
     @Column(name = "fa_na")

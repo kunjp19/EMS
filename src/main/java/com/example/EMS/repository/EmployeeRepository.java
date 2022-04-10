@@ -10,4 +10,7 @@ import java.util.List;
 public interface EmployeeRepository extends CrudRepository<EmployeeDetails, Long> {
 
     List<EmployeeDetails> findAll();
+
+    EmployeeDetails save(EmployeeDetails employeeDetails);
+
 }
