@@ -32,7 +32,7 @@ public class EmployeeController {
         return employeeService.getAllEmployee();
     }
 
-    @GetMapping(value = "/{zipcode}", produces = "application/json")
+    @GetMapping(value = "/zipCode/{zipcode}", produces = "application/json")
     @ApiOperation(value = "Fetches all the employees by zipcode",
             notes = "Returns all the employees")
     @ApiResponses(value={
