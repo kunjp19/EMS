@@ -13,4 +13,6 @@ public interface EmployeeRepository extends CrudRepository<EmployeeDetails, Long
 
     EmployeeDetails save(EmployeeDetails employeeDetails);
 
+    void deleteByEmpId(Long employeeId);
+
 }

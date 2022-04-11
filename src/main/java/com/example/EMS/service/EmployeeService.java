@@ -4,6 +4,7 @@ import com.example.EMS.model.EmployeeDetails;
 import com.example.EMS.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import javax.transaction.Transactional;
 
 import java.util.List;
 
@@ -17,8 +18,14 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public EmployeeDetails persistEmployeeDetais (EmployeeDetails employeeDetails) {
-        return employeeRepository.save(employeeDetails);
+    @Transaction
+    public String persistEmployeeDetais (EmployeeDetails employeeDetails) {
+        return String.valueOf(employeeRepository.save(employeeDetails).getEmpId());
+    }
+
+    @Transaction
+    public void deleteEmployeeDetails (Long employeeId) {
+        employeeRepository.deleteByEmpId(employeeId);
     }
 
 }

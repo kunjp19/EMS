@@ -9,8 +9,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @Slf4j
@@ -41,9 +43,15 @@ public class EmployeeController {
             @ApiResponse(code=500,message = "Interval Server Error"),
             @ApiResponse(code=200,message = "OK")
     })
-    public void saveEmployeeDetails(@RequestBody EmployeeDetails employeeDetails) {
-        if (!ObjectUtils.isEmpty(employeeService.persistEmployeeDetais(employeeDetails))) {
+    public String saveEmployeeDetails(@RequestBody EmployeeDetails employeeDetails) {
+            String employeeId = "Employee with " + employeeService.persistEmployeeDetais(employeeDetails) + "has been added/updated";
             log.info("Employee details has been added", employeeService.persistEmployeeDetais(employeeDetails));
-        }
+            return employeeId;
     }
+
+    @DeleteMapping(value = "/deleteEmployee/{id}", produces = "application/json")
+    public void deleteEmployeeDetails(@PathVariable("id") Long employeeId) {
+        employeeService.deleteEmployeeDetails(employeeId);
+    }
+
 }
