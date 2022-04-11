@@ -18,12 +18,11 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    @Transaction
     public String persistEmployeeDetais (EmployeeDetails employeeDetails) {
         return String.valueOf(employeeRepository.save(employeeDetails).getEmpId());
     }
 
-    @Transaction
+    @Transactional
     public void deleteEmployeeDetails (Long employeeId) {
         employeeRepository.deleteByEmpId(employeeId);
     }
