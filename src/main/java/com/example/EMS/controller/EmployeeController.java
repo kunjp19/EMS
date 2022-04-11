@@ -8,11 +8,7 @@ import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.ObjectUtils;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @Slf4j
@@ -34,6 +30,18 @@ public class EmployeeController {
     })
     public List<EmployeeDetails> getEmployees() {
         return employeeService.getAllEmployee();
+    }
+
+    @GetMapping(value = "/{zipcode}", produces = "application/json")
+    @ApiOperation(value = "Fetches all the employees by zipcode",
+            notes = "Returns all the employees")
+    @ApiResponses(value={
+            @ApiResponse(code=302,message = "FOUND"),
+            @ApiResponse(code=500,message = "Interval Server Error"),
+            @ApiResponse(code=200,message = "OK")
+    })
+    public List<EmployeeDetails> getEmployeesByZipcode(@PathVariable("zipcode") int zipCode) {
+        return employeeService.getAllByZipCode(zipCode);
     }
 
     @PostMapping(value = "/addEmployee", produces = "application/json")

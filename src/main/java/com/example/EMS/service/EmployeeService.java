@@ -18,6 +18,10 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
+    public List<EmployeeDetails> getAllByZipCode(int zipCode) {
+        return employeeRepository.findAllByZipCode(zipCode);
+    }
+
     public String persistEmployeeDetais (EmployeeDetails employeeDetails) {
         return String.valueOf(employeeRepository.save(employeeDetails).getEmpId());
     }

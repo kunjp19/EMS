@@ -15,4 +15,6 @@ public interface EmployeeRepository extends CrudRepository<EmployeeDetails, Long
 
     void deleteByEmpId(Long employeeId);
 
+    List<EmployeeDetails> findAllByZipCode(int zipCode);
+
 }
