@@ -57,6 +57,19 @@ public class EmployeeController {
             return employeeId;
     }
 
+    @PostMapping(value = "/addEmployees", produces = "application/json")
+    @ApiOperation(value = "save employee details")
+    @ApiResponses(value={
+            @ApiResponse(code=302,message = "ADDED"),
+            @ApiResponse(code=500,message = "Interval Server Error"),
+            @ApiResponse(code=200,message = "OK")
+    })
+    public void saveEmployeeDetailsByList(@RequestBody List<EmployeeDetails> listEmployeeDetails) {
+//        String rs = (employeeService.saveAllEmployee(listEmployeeDetails)).size() + " Employees has been added/updated";
+//        log.info("Employee details has been added");
+        employeeService.saveAllEmployee(listEmployeeDetails);
+    }
+
     @DeleteMapping(value = "/deleteEmployee/{id}", produces = "application/json")
     public void deleteEmployeeDetails(@PathVariable("id") Long employeeId) {
         employeeService.deleteEmployeeDetails(employeeId);

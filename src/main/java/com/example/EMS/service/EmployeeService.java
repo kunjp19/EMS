@@ -31,4 +31,9 @@ public class EmployeeService {
         employeeRepository.deleteByEmpId(employeeId);
     }
 
+    @Transactional
+    public void saveAllEmployee(List<EmployeeDetails> employeeDetails) {
+        employeeRepository.saveAll(employeeDetails);
+    }
+
 }
