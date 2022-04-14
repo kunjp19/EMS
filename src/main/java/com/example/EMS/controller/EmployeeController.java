@@ -64,10 +64,11 @@ public class EmployeeController {
             @ApiResponse(code=500,message = "Interval Server Error"),
             @ApiResponse(code=200,message = "OK")
     })
-    public void saveEmployeeDetailsByList(@RequestBody List<EmployeeDetails> listEmployeeDetails) {
-//        String rs = (employeeService.saveAllEmployee(listEmployeeDetails)).size() + " Employees has been added/updated";
-//        log.info("Employee details has been added");
+    public String saveEmployeeDetailsByList(@RequestBody List<EmployeeDetails> listEmployeeDetails) {
+        String rs = "Employees " + listEmployeeDetails.size()  + " has been added/updated";
+        log.info("Employee details has been added");
         employeeService.saveAllEmployee(listEmployeeDetails);
+        return rs;
     }
 
     @DeleteMapping(value = "/deleteEmployee/{id}", produces = "application/json")

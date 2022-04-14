@@ -17,6 +17,4 @@ public interface EmployeeRepository extends CrudRepository<EmployeeDetails, Long
 
     List<EmployeeDetails> findAllByZipCode(int zipCode);
 
-//    void saveAll(List<EmployeeDetails> employeeDetails);
-
 }
