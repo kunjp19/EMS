@@ -3,8 +3,8 @@ package com.example.EMS.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Data
 @Getter
 @Setter
 @Entity
@@ -13,23 +13,15 @@ import javax.persistence.*;
 @Table(name = "employee")
 public class EmployeeDetails {
     @Id
-    @Column(name = "emp_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name = "emp_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long empId;
 
-    @Column(name = "fa_na")
-    public String firstName;
+    private String firstName;
 
-    @Column(name = "la_na")
-    public String lastName;
+    private String lastName;
 
-    @Column(name = "st_na")
-    public String streetName;
+    @OneToMany(targetEntity = Address.class, orphanRemoval = true, cascade = CascadeType.ALL)
+    List<Address> addressList;
 
-    public String city;
-
-    public String state;
-
-    @Column(name = "zip_cd")
-    public int zipCode;
 }
